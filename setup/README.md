@@ -17,6 +17,9 @@
   * [Datadog](#datadog)
 - [Cluster Setup](#cluster-setup)
 
+
+<sub>Made with [markdown TOC generator](https://ecotrust-canada.github.io/markdown-toc/).</sub>
+
 ## Single EC2 Instance
 
 ### Terraform Setup
