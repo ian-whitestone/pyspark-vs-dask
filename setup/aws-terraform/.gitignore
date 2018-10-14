@@ -1,0 +1,3 @@
+# Terraform state/plugin files
+*.tfstate*
+*.terraform/
