@@ -1,5 +1,22 @@
 # Setup
 
+- [Single EC2 Instance](#single-ec2-instance)
+  * [Terraform Setup](#terraform-setup)
+  * [Installing Dask](#installing-dask)
+  * [Installing PySpark](#installing-pyspark)
+    + [Download required files](#download-required-files)
+    + [Install Java](#install-java)
+    + [Unzip things](#unzip-things)
+    + [Build conda environment](#build-conda-environment)
+    + [Install pyspark](#install-pyspark)
+    + [Grab the spark-avro jar](#grab-the-spark-avro-jar)
+    + [Update .bashrc](#update-bashrc)
+    + [Verifying things are working](#verifying-things-are-working)
+      - [Pure Python](#pure-python)
+      - [Pyspark](#pyspark)
+  * [Datadog](#datadog)
+- [Cluster Setup](#cluster-setup)
+
 ## Single EC2 Instance
 
 ### Terraform Setup
@@ -46,11 +63,12 @@ For the instance's IAM role, I created new IAM role that has the default Amazon 
 conda create -n dask python=3.6 -y -q
 conda activate dask
 conda install dask -y
+conda install s3fs -c conda-forge -y # dependency for reading S3 files
 ```
 
 ### Installing PySpark
 
-## Download required files
+#### Download required files
 
 ```bash
 wget https://www.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-without-hadoop.tgz
@@ -63,7 +81,7 @@ Download links reference:
 - Spark: https://www.apache.org/dist/spark/spark-2.3.1/
 - Hadoop: https://archive.apache.org/dist/hadoop/core/hadoop-2.9.1/
 
-## Install Java
+#### Install Java
 
 ```bash
 sudo apt-get update
@@ -79,14 +97,14 @@ OpenJDK Runtime Environment (build 1.8.0_181-8u181-b13-0ubuntu0.16.04.1-b13)
 OpenJDK 64-Bit Server VM (build 25.181-b13, mixed mode)
 ```
 
-## Unzip things
+#### Unzip things
 
 ```bash
 tar -xvzf hadoop-2.9.1.tar.gz && rm -f hadoop-2.9.1.tar.gz
 tar -xvzf spark-2.3.1-bin-without-hadoop.tgz && rm -f spark-2.3.1-bin-without-hadoop.tgz
 ```
 
-## Build conda environment
+#### Build conda environment
 
 ```bash
 conda create -n spark python=3.6 -y -q
@@ -95,14 +113,14 @@ conda install -y conda=4.3.30
 conda install -y pypandoc=1.4 py4j=0.10.7
 ```
 
-## Install pyspark
+#### Install pyspark
 
 ```bash
 cd spark-2.3.1-bin-without-hadoop/python
 python setup.py install
 ```
 
-## Grab the spark-avro jar
+#### Grab the spark-avro jar
 
 
 ```bash
@@ -110,7 +128,7 @@ cd /home/ubuntu
 wget http://repo1.maven.org/maven2/com/databricks/spark-avro_2.11/4.0.0/spark-avro_2.11-4.0.0.jar .
 ```
 
-## Update .bashrc
+#### Update .bashrc
 
 
 ```bash
@@ -126,9 +144,9 @@ export SPARK_DIST_CLASSPATH=$(hadoop classpath)://home/ubuntu/hadoop-2.9.1/share
 export PYTHONPATH=//home/ubuntu/spark-2.3.1-bin-without-hadoop/python/lib/py4j-0.10.7-src.zip:/opt/spark-2.3.1-bin-without-hadoop/python
 ```
 
-## Verifying things are working
+#### Verifying things are working
 
-### Pure Python
+##### Pure Python
 
 ```python
 from pyspark import SparkConf, SparkContext, SQLContext
@@ -149,7 +167,7 @@ sc.stop()
 ```
 
 
-### Pyspark
+##### Pyspark
 
 ```bash
 (spark) ubuntu@ip-172-31-2-44:~$ pyspark
