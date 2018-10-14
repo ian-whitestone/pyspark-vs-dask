@@ -11,8 +11,42 @@ terraform init
 terraform plan
 terraform apply
 ```
+
+You can look at the `aws-terraform/*.tf` files to see my configuration. In particular, the `variables.tf` file below outlines the main parameters I selected.
+
+```
+#AWS
+variable "aws_region"                 {default = "us-east-1"}
+
+# Resource Tags
+variable "ec2_name"                   {default = "pyspark_vs_dask"}
+
+# Instance details
+variable "key_name"                   { default = "default"}
+variable "subnet_id"                  { default = "subnet-54f5a631" }
+variable "iam_instance_profile"       { default = "EC2-S3-FULL-ACCESS" }
+variable "security_groups"            { default = "sg-37b7ee48,sg-839e54f6" }
+variable "instance_type"              { default = "r5.xlarge" }
+variable "availability_zone"          { default = "us-east-1a" }
+variable "ebs_delete_on_termination"  { default = true }
+variable "root_block_device_vol_size" { default = 20 }
+
+# bootstrap the ec2 instance
+variable "ec2_user"                   { default = "ubuntu" }
+variable "ec2_user_data"              { default = "user_data.sh" }
+```
+
+The R5 instances are described by AWS as being used for *fast performance for workloads that process large data sets in memory*. The `r5.xlarge` instance I chose has 4 vCPUs and 32 GB of RAM. 
+
+For the instance's IAM role, I created new IAM role that has the default Amazon S3 full access policy attached. For security groups, I selected two default security groups that allow all inbound SSH traffic on port 22, and all inbound traffic on port 8888 (used for jupyter notebooks).
+
 ### Installing Dask
 
+```bash
+conda create -n dask python=3.6 -y -q
+conda activate dask
+conda install dask -y
+```
 
 ### Installing PySpark
 
@@ -146,9 +180,47 @@ SparkSession available as 'spark'.
 
 ### Datadog
 
+Getting the datadog agent on your EC2 instance is quite straightforward. 
+
+`DD_API_KEY=<api_key_from_datadog_site> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
+
+```bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 10446  100 10446    0     0  96525      0 --:--:-- --:--:-- --:--:-- 96722
+
+* Installing apt-transport-https
+
+...
+...
+...
+
+
+* Adding your API key to the Agent configuration: /etc/datadog-agent/datadog.yaml
+
+* Starting the Agent...
+
+
+
+Your Agent is running and functioning properly. It will continue to run in the
+background and submit metrics to Datadog.
+
+If you ever want to stop the Agent, run:
+
+    sudo systemctl stop datadog-agent
+
+And to run it again run:
+
+    sudo systemctl start datadog-agent
+```
+
+You can then go straight into the datadog site and start making dashboards. Here's a quick dashboard I made:
+
+<img src='datadog_example.png'>
 
 *Resources*
 - https://www.datadoghq.com/blog/monitoring-ec2-instances-with-datadog/
+- List of metrics: https://docs.datadoghq.com/integrations/system/
 
 
 ## Cluster Setup

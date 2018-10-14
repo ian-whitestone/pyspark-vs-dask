@@ -17,4 +17,3 @@ variable "root_block_device_vol_size" { default = 20 }
 # bootstrap the ec2 instance
 variable "ec2_user"                   { default = "ubuntu" }
 variable "ec2_user_data"              { default = "user_data.sh" }
-variable "bashrc"                     { default = "bashrc.sh" }
