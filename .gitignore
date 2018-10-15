@@ -2,6 +2,7 @@
 test.py
 private.yml
 imgs/*
+notes.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

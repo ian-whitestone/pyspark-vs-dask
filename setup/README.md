@@ -114,6 +114,7 @@ conda create -n spark python=3.6 -y -q
 conda activate spark
 conda install -y conda=4.3.30
 conda install -y pypandoc=1.4 py4j=0.10.7
+conda install -y pandas # in order to convert spark dataframes back to pandas
 ```
 
 #### Install pyspark
