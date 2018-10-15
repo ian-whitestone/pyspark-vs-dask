@@ -1,7 +1,4 @@
-from fastavro import writer, parse_schema
-import boto3
 import dask.bag
-from numpy import random
 
 import logger
 
