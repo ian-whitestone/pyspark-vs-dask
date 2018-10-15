@@ -1,0 +1,6 @@
+2018-10-15 00:36:33,962|INFO|logger: START: Creating spark conf
+2018-10-15 00:36:35,918|INFO|logger: FINISH: Finished creating spark conf
+2018-10-15 00:36:35,918|INFO|logger: START: Creating spark dataframe
+2018-10-15 00:37:56,491|INFO|logger: FINISH: Spark dataframe created
+2018-10-15 00:37:56,491|INFO|logger: START: Starting filtered count
+2018-10-15 00:39:08,018|INFO|logger: START: Count is 13461

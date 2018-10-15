@@ -1,0 +1,12 @@
+2018-10-15 00:51:47,192|INFO|logger: START: Creating spark conf
+2018-10-15 00:51:49,217|INFO|logger: FINISH: Finished creating spark conf
+2018-10-15 00:51:49,217|INFO|logger: START: Creating spark dataframe
+2018-10-15 00:53:08,188|INFO|logger: FINISH: Spark dataframe created
+2018-10-15 00:53:08,188|INFO|logger: START: Starting to pandas..
+2018-10-15 00:54:21,748|INFO|logger: FINISH: hello pandas! (13461, 2)
+2018-10-15 01:12:51,717|INFO|logger: START: Creating spark conf
+2018-10-15 01:12:53,708|INFO|logger: FINISH: Finished creating spark conf
+2018-10-15 01:12:53,708|INFO|logger: START: Creating spark dataframe
+2018-10-15 01:14:20,153|INFO|logger: FINISH: Spark dataframe created
+2018-10-15 01:14:20,154|INFO|logger: START: Starting to pandas..
+2018-10-15 01:15:40,894|INFO|logger: FINISH: hello pandas! (13461, 2)

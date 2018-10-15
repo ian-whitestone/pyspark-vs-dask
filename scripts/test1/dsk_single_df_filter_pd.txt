@@ -1,0 +1,6 @@
+2018-10-15 01:02:02,359|INFO|logger: START: Creating dask bag with filter
+2018-10-15 01:03:13,141|INFO|logger: FINISH: Dask bag created
+2018-10-15 01:03:13,141|INFO|logger: START: Creating dask dataframe
+2018-10-15 01:03:13,446|INFO|logger: FINISH: Dask dataframe created
+2018-10-15 01:03:13,446|INFO|logger: START: Starting to pandas..
+2018-10-15 01:03:38,997|INFO|logger: FINISH: hello pandas! (13461, 2)

@@ -1,0 +1,6 @@
+2018-10-15 00:22:34,621|INFO|logger: START: Creating spark conf
+2018-10-15 00:22:36,623|INFO|logger: FINISH: Finished creating spark conf
+2018-10-15 00:22:36,624|INFO|logger: START: Creating spark dataframe
+2018-10-15 00:22:39,825|INFO|logger: FINISH: Spark dataframe created
+2018-10-15 00:22:39,825|INFO|logger: START: Starting count
+2018-10-15 00:22:41,131|INFO|logger: FINISH: Count is 998

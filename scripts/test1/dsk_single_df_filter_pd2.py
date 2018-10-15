@@ -2,7 +2,7 @@ import dask.bag
 
 import logger
 
-TEST_NAME = 'dsk_single_df_filter_pd'
+TEST_NAME = 'dsk_single_df_filter_pd2'
 LOGGER = logger.get_logger(TEST_NAME)
 
 # Specify some constants
