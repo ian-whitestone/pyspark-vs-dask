@@ -4,13 +4,13 @@
 All python scripts and logs are located in the `test1` directory. The python file/log corresponding to each test are named the same. For example, for test `dsk_single_df_single_file_cnt`, see the following files:
 
 - Dask python script: `dsk_single_df_single_file_cnt.py`
-- Dask log file: `dsk_single_df_single_file_cnt.txt`
+- Dask log file: `logs/dsk_single_df_single_file_cnt.txt`
 - Spark python script: `spk_single_df_single_file_cnt.py`
-- Spark log file: `spk_single_df_single_file_cnt.txt`
+- Spark log file: `logs/spk_single_df_single_file_cnt.txt`
 
 The `parselog.py` module is run to parse the log files and print the timings you see below. Example usage:
 
-`$ python parselog.py test1/dsk_single_df_single_file_cnt.txt`
+`$ python parselog.py test1/logs/dsk_single_df_single_file_cnt.txt`
 
 
 

@@ -2,7 +2,7 @@ from pyspark import SparkConf, SparkContext, SQLContext
 
 import logger
 
-TEST_NAME = 'spk_single_df_filter_pd'
+TEST_NAME = 'spk_single_df_filter_pd2'
 LOGGER = logger.get_logger(TEST_NAME)
 
 # Specify some constants
