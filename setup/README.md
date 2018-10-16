@@ -56,7 +56,7 @@ variable "ec2_user"                   { default = "ubuntu" }
 variable "ec2_user_data"              { default = "user_data.sh" }
 ```
 
-The R5 instances are described by AWS as being used for *fast performance for workloads that process large data sets in memory*. The `r5.xlarge` instance I chose has 4 vCPUs and 32 GB of RAM. 
+The R5 instances are described by AWS as being used for *fast performance for workloads that process large data sets in memory*. The `r5.xlarge` instance I chose has 4 vCPUs and 32 GB of RAM.
 
 For the instance's IAM role, I created new IAM role that has the default Amazon S3 full access policy attached. For security groups, I selected two default security groups that allow all inbound SSH traffic on port 22, and all inbound traffic on port 8888 (used for jupyter notebooks).
 
@@ -67,6 +67,8 @@ conda create -n dask python=3.6 -y -q
 conda activate dask
 conda install dask -y
 conda install s3fs -c conda-forge -y # dependency for reading S3 files
+conda install fastavro -y
+conda deactivate
 ```
 
 ### Installing PySpark
@@ -75,7 +77,6 @@ conda install s3fs -c conda-forge -y # dependency for reading S3 files
 
 ```bash
 wget https://www.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-without-hadoop.tgz
-
 wget https://archive.apache.org/dist/hadoop/core/hadoop-2.9.1/hadoop-2.9.1.tar.gz
 ```
 
@@ -122,6 +123,7 @@ conda install -y pandas # in order to convert spark dataframes back to pandas
 ```bash
 cd spark-2.3.1-bin-without-hadoop/python
 python setup.py install
+conda deactivate
 ```
 
 #### Grab the spark-avro jar
@@ -202,7 +204,7 @@ SparkSession available as 'spark'.
 
 ### Datadog
 
-Getting the datadog agent on your EC2 instance is quite straightforward. 
+Getting the datadog agent on your EC2 instance is quite straightforward.
 
 `DD_API_KEY=<api_key_from_datadog_site> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"`
 

@@ -13,7 +13,6 @@ The `parselog.py` module is run to parse the log files and print the timings you
 `$ python parselog.py test1/logs/dsk_single_df_single_file_cnt.txt`
 
 
-
 ## No Filter
 
 ### Single file
