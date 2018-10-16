@@ -58,6 +58,27 @@ The `parselog.py` module is run to parse the log files and print the timings you
 ```
 
 
+`URLPATH = "s3://dask-avro-data/application-data/app-*.avro"`
+
+- ~150,000,000 records... 3,000,000 after filtering
+
+
+**Dask**
+```bash
+6686 (s) 111.43 (min): Creating dask bag with filter
+26 (s) 0.43 (min): Creating dask dataframe
+7468 (s) 124.47 (min): Starting count
+14180 (s) 236.34 (min): Total time for test: dsk_single_df_filter_cnt2
+```
+
+**PySpark**
+```bash
+2 (s) 0.04 (min): Creating spark conf
+1704 (s) 28.40 (min): Creating spark dataframe
+15434 (s) 257.24 (min): Starting filtered count
+17140 (s) 285.68 (min): Total time for test: spk_single_df_filter_cnt2
+```
+
 ## With Filter
 
 `URLPATH = "s3://dask-avro-data/application-data/app-100*.avro"`
@@ -103,20 +124,6 @@ The `parselog.py` module is run to parse the log files and print the timings you
 154 (s) 2.58 (min): Total time for test: spk_single_df_filter_pd
 ```
 
-`URLPATH = "s3://dask-avro-data/application-data/app-*.avro"`
-
-- records
-
-
-**Dask**
-```bash
-
-```
-
-**PySpark**
-```bash
-
-```
 # Test Set 2 - Multiple Dataframes: read, filter, join
 
 
