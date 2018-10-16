@@ -1,9 +1,15 @@
+import os
 import logging
 
 FORMAT = '%(asctime)s|%(levelname)s|%(name)s: %(message)s'
 
 def get_logger(logname):
     filename = logname + '.txt'
+
+    # delete file if it already exists
+    if os.path.exists(filename):
+        os.remove(filename)
+        
     # set up logging to file
     logging.basicConfig(
          filename=filename,
