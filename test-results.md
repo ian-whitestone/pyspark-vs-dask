@@ -135,16 +135,24 @@ Not sure why timing went up...
 - ~150,000,000 records... 3,000,000 after filtering
 - Dask: 
 `cnt.compute(num_workers=500)` # number of threads
+- Spark: 
+`Sconf = SparkConf().setMaster('local[4]')`
 
 
 **Dask**
 ```bash
-
+6645 (s) 110.75 (min): Creating dask bag with filter
+26 (s) 0.45 (min): Creating dask dataframe
+5397 (s) 89.95 (min): Starting count
+12069 (s) 201.15 (min): Total time for test: dsk_single_df_filter_cnt4
 ```
 
 **PySpark**
 ```bash
-
+2 (s) 0.03 (min): Creating spark conf
+1551 (s) 25.85 (min): Creating spark dataframe
+14841 (s) 247.36 (min): Starting filtered count
+16394 (s) 273.24 (min): Total time for test: spk_single_df_filter_cnt4
 ```
 
 ## With Filter to Pandas
