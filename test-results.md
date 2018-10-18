@@ -58,27 +58,6 @@ The `parselog.py` module is run to parse the log files and print the timings you
 ```
 
 
-`URLPATH = "s3://dask-avro-data/application-data/app-*.avro"`
-
-- ~150,000,000 records... 3,000,000 after filtering
-
-
-**Dask**
-```bash
-6686 (s) 111.43 (min): Creating dask bag with filter
-26 (s) 0.43 (min): Creating dask dataframe
-7468 (s) 124.47 (min): Starting count
-14180 (s) 236.34 (min): Total time for test: dsk_single_df_filter_cnt2
-```
-
-**PySpark**
-```bash
-2 (s) 0.04 (min): Creating spark conf
-1704 (s) 28.40 (min): Creating spark dataframe
-15434 (s) 257.24 (min): Starting filtered count
-17140 (s) 285.68 (min): Total time for test: spk_single_df_filter_cnt2
-```
-
 ## With Filter
 
 `URLPATH = "s3://dask-avro-data/application-data/app-100*.avro"`
@@ -101,6 +80,72 @@ The `parselog.py` module is run to parse the log files and print the timings you
 154 (s) 2.57 (min): Total time for test: spk_single_df_filter_cnt
 ```
 
+
+`URLPATH = "s3://dask-avro-data/application-data/app-*.avro"`
+
+- ~150,000,000 records... 3,000,000 after filtering
+
+
+**Dask**
+```bash
+6686 (s) 111.43 (min): Creating dask bag with filter
+26 (s) 0.43 (min): Creating dask dataframe
+7468 (s) 124.47 (min): Starting count
+14180 (s) 236.34 (min): Total time for test: dsk_single_df_filter_cnt2
+```
+
+**PySpark**
+```bash
+2 (s) 0.04 (min): Creating spark conf
+1704 (s) 28.40 (min): Creating spark dataframe
+15434 (s) 257.24 (min): Starting filtered count
+17140 (s) 285.68 (min): Total time for test: spk_single_df_filter_cnt2
+```
+
+`URLPATH = "s3://dask-avro-data/application-data/app-*.avro"`
+
+- ~150,000,000 records... 3,000,000 after filtering
+- Dask: 
+`cnt.compute(num_workers=100)` # number of threads
+- Spark: 
+`Sconf = SparkConf().setMaster('local[4]').set('spark.driver.memory', '20g')` # can only set number of cores, using max available
+
+
+**Dask**
+```bash
+6586 (s) 109.78 (min): Creating dask bag with filter
+27 (s) 0.45 (min): Creating dask dataframe
+5276 (s) 87.95 (min): Starting count
+11890 (s) 198.18 (min): Total time for test: dsk_single_df_filter_cnt3
+```
+
+**PySpark**
+```bash
+2 (s) 0.04 (min): Creating spark conf
+1816 (s) 30.27 (min): Creating spark dataframe
+16687 (s) 278.12 (min): Starting filtered count
+18505 (s) 308.43 (min): Total time for test: spk_single_df_filter_cnt3
+```
+Not sure why timing went up...
+
+
+
+`URLPATH = "s3://dask-avro-data/application-data/app-*.avro"`
+
+- ~150,000,000 records... 3,000,000 after filtering
+- Dask: 
+`cnt.compute(num_workers=500)` # number of threads
+
+
+**Dask**
+```bash
+
+```
+
+**PySpark**
+```bash
+
+```
 
 ## With Filter to Pandas
 
