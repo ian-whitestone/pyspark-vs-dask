@@ -1,9 +1,13 @@
+import sys
+import os
+
 import dask.bag
 import dask.dataframe as dd
 
 import logger
 
-TEST_NAME = 'dsk_multi_df_filter_pd'
+MODULE_NAME = os.path.basename(sys.modules['__main__'].__file__)
+TEST_NAME = os.path.splitext(MODULE_NAME)[0]
 LOGGER = logger.get_logger(TEST_NAME)
 
 # Specify some constants
@@ -50,7 +54,6 @@ LOGGER.info('FINISH: Dask dataframe 1 created')
 
 LOGGER.info('START: Creating dask bag 2')
 bag2 = dask.bag.read_avro(URLPATH2)
-bag2 = bag2.filter(filter_func)
 bag2 = bag2.map(parse_dict2)
 LOGGER.info('FINISH: Dask bag2 created')
 
