@@ -37,7 +37,7 @@ df2 = df2.selectExpr(
 LOGGER.info('FINISH: Spark dataframe 2 created')
 
 LOGGER.info('START: Joining dataframes')
-df = df1.join(df1, df1.applicationId == df2.applicationId, how='inner')
+df = df1.join(df2, df1.applicationId == df2.applicationId, how='inner')
 LOGGER.info('FINISH: Finished joining dataframes')
 
 LOGGER.info('START: Starting to pandas..')
