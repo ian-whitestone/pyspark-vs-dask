@@ -34,9 +34,16 @@ def parse_dict2(data):
     }
     return parsed
 
+
 # Start
 LOGGER.info('START: Creating dask bag 1')
-bag1 = dask.bag.read_avro(URLPATH1)
+bag1 = dask.bag.read_avro(
+    URLPATH1,
+    storage_options = {
+        'config_kwargs': {'max_pool_connections': 100} #To avoid connection pool is full errors, as discussed here: https://github.com/dask/dask/issues/3493
+    },
+    blocksize=None
+)
 bag1 = bag1.filter(filter_func)
 bag1 = bag1.map(parse_dict1)
 LOGGER.info('FINISH: Dask bag1 created')
@@ -53,7 +60,13 @@ LOGGER.info('FINISH: Dask dataframe 1 created')
 
 
 LOGGER.info('START: Creating dask bag 2')
-bag2 = dask.bag.read_avro(URLPATH2)
+bag2 = dask.bag.read_avro(
+    URLPATH2,
+    storage_options = {
+        'config_kwargs': {'max_pool_connections': 100} #To avoid connection pool is full errors, as discussed here: https://github.com/dask/dask/issues/3493
+    },
+    blocksize=None
+)
 bag2 = bag2.map(parse_dict2)
 LOGGER.info('FINISH: Dask bag2 created')
 
