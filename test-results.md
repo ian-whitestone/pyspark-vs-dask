@@ -179,10 +179,114 @@ Not sure why timing went up...
 
 # Test Set 2 - Multiple Dataframes: read, filter, join
 
+## Join two dataframes, filter, convert to pandas
+
+- 900,000 records/1200 avro files * 2 datasets
+
+**DASK**
+```bash
+52 (s) 0.87 (min): Creating dask bag 1
+0 (s) 0.00 (min): Creating dask dataframe 1
+54 (s) 0.91 (min): Creating dask bag 2
+0 (s) 0.00 (min): Creating dask dataframe 2
+0 (s) 0.00 (min): Joining dataframes
+665 (s) 11.09 (min): Starting to pandas..
+772 (s) 12.87 (min): Total time for test: dsk_multi_df_filter_pd
+```
+
+**PYSPARK**
+
+```bash
+2 (s) 0.03 (min): Creating spark conf
+93 (s) 1.56 (min): Creating spark dataframe 1
+92 (s) 1.55 (min): Creating spark dataframe 2
+0 (s) 0.00 (min): Joining dataframes
+146 (s) 2.44 (min): Starting to pandas..
+334 (s) 5.58 (min): Total time for test: spk_multi_df_filter_pd
+```
+
+
+### Join two dataframes, filter, and count
+
+
+#### On a r5.xlarge (4 cores, 32GB Ram)
+- 150,000,000 records/200,000 avro files * 2 datasets
+- Note, ran out of disk space for dask. bumped up to 50GB EBS volume
+
+**DASK**
+```bash
+
+```
+
+
+**SPARK**
+
+```bash
+2 (s) 0.03 (min): Creating spark conf
+1735 (s) 28.92 (min): Creating spark dataframe 1
+1778 (s) 29.64 (min): Creating spark dataframe 2
+0 (s) 0.00 (min): Joining dataframes
+24383 (s) 406.40 (min): Starting filtered count
+27900 (s) 465.00 (min): Total time for test: spk_multi_df_filter_cnt
+```
+
+#### On a c5.9xlarge (36 cores, 72 GB RAM)
+
+**DASK**
+```bash
+
+```
+
+
+
+**SPARK**
+```bash
+
+```
+
+
+#### With dask scheduler='processes' on the c5.9xlarge
+
+**DASK**
+```bash
+
+```
+
+
+# Test Set 3 - Running some Python UDFs
 
 **Dask**
 ```bash
 
+```
+
+**PySpark**
+```bash
+
+```
+
+# Test Set 4 - Scaling on a Single Machine
+
+`dsk_filter_cnt` test with varying scheduler/num_workers
+
+**Dask**
+```bash
+67 (s) 1.12 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+451 (s) 7.53 (min): Starting count
+520 (s) 8.67 (min): Total time for test: dsk_filter_cnt_threading_36
+81 (s) 1.36 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+454 (s) 7.57 (min): Starting count
+536 (s) 8.94 (min): Total time for test: dsk_filter_cnt_threading_25
+75 (s) 1.26 (min): Creating dask bag with filter
+0 (s) 0.02 (min): Creating dask dataframe
+448 (s) 7.48 (min): Starting count
+524 (s) 8.75 (min): Total time for test: dsk_filter_cnt_threading_15
+87 (s) 1.45 (min): Creating dask bag with filter
+1 (s) 0.02 (min): Creating dask dataframe
+417 (s) 6.96 (min): Starting count
+506 (s) 8.43 (min): Total time for test: dsk_filter_cnt_threading_5
 ```
 
 **PySpark**
