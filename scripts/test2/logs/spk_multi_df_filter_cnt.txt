@@ -1,0 +1,16 @@
+2018-10-19 22:38:57,928|INFO|logger: START: Creating spark conf
+2018-10-19 22:38:58 WARN  Utils:66 - Your hostname, ip-10-202-130-90 resolves to a loopback address: 127.0.1.1; using 10.202.130.90 instead (on interface ens5)
+2018-10-19 22:38:58 WARN  Utils:66 - Set SPARK_LOCAL_IP if you need to bind to another address
+2018-10-19 22:38:58 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+2018-10-19 22:38:59,988|INFO|logger: FINISH: Finished creating spark conf
+2018-10-19 22:38:59,988|INFO|logger: START: Creating spark dataframe 1
+2018-10-19 23:00:25 WARN  SharedInMemoryCache:66 - Evicting cached table partition metadata from memory due to size constraints (spark.sql.hive.filesourcePartitionFileCacheSize = 262144000 bytes). This may impact query planning performance.
+2018-10-19 23:07:55,471|INFO|logger: FINISH: Spark dataframe 1 created
+2018-10-19 23:07:55,472|INFO|logger: START: Creating spark dataframe 2
+2018-10-19 23:37:34,161|INFO|logger: FINISH: Spark dataframe 2 created
+2018-10-19 23:37:34,161|INFO|logger: START: Joining dataframes
+2018-10-19 23:37:34,189|INFO|logger: FINISH: Finished joining dataframes
+2018-10-19 23:37:34,189|INFO|logger: START: Starting filtered count
+2018-10-20 06:23:57,963|INFO|logger: START: Count is 2670654

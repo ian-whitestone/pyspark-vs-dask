@@ -1,17 +1,24 @@
+import os
+import sys
+
 from pyspark import SparkConf, SparkContext, SQLContext
 
 import logger
 
-TEST_NAME = 'spk_multi_df_filter_pd'
+MODULE_NAME = os.path.basename(sys.modules['__main__'].__file__)
+TEST_NAME = os.path.splitext(MODULE_NAME)[0]
 LOGGER = logger.get_logger(TEST_NAME)
 
 # Specify some constants
-URLPATH1 = "s3a://dask-avro-data/application-data/app-100*.avro"
-URLPATH2 = "s3a://dask-avro-data/fulfillment-data/fulfillment-100*.avro"
+URLPATH1 = "s3a://dask-avro-data/application-data/app-*.avro"
+URLPATH2 = "s3a://dask-avro-data/fulfillment-data/fulfillment-*.avro"
 
 # Start
 LOGGER.info('START: Creating spark conf')
-Sconf = SparkConf().setMaster('local[4]')
+Sconf = SparkConf().setMaster('local[4]'). \
+    set('spark.driver.memory', '4g'). \
+    set('spark.driver.memory', '4g')
+
 sc = SparkContext(appName="my_test", conf=Sconf)
 sqlContext = SQLContext(sparkContext=sc)
 LOGGER.info('FINISH: Finished creating spark conf')
@@ -37,11 +44,11 @@ df2 = df2.selectExpr(
 LOGGER.info('FINISH: Spark dataframe 2 created')
 
 LOGGER.info('START: Joining dataframes')
-df = df1.join(df2, df1.applicationId == df2.applicationId, how='inner')
+df = df1.join(df2, "applicationId", how='inner')
 LOGGER.info('FINISH: Finished joining dataframes')
 
-LOGGER.info('START: Starting to pandas..')
-df = df.toPandas()
-LOGGER.info('FINISH: hello pandas! %s', df.shape)
+LOGGER.info('START: Starting filtered count')
+cnt = df.count()
+LOGGER.info('START: Count is %s', cnt)
 
 sc.stop()

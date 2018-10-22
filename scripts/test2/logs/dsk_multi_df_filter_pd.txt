@@ -1,0 +1,12 @@
+2018-10-20 18:46:47,155|INFO|logger: START: Creating dask bag 1
+2018-10-20 18:47:39,220|INFO|logger: FINISH: Dask bag1 created
+2018-10-20 18:47:39,220|INFO|logger: START: Creating dask dataframe 1
+2018-10-20 18:47:39,296|INFO|logger: FINISH: Dask dataframe 1 created
+2018-10-20 18:47:39,296|INFO|logger: START: Creating dask bag 2
+2018-10-20 18:48:34,172|INFO|logger: FINISH: Dask bag2 created
+2018-10-20 18:48:34,172|INFO|logger: START: Creating dask dataframe 2
+2018-10-20 18:48:34,231|INFO|logger: FINISH: Dask dataframe 2 created
+2018-10-20 18:48:34,231|INFO|logger: START: Joining dataframes
+2018-10-20 18:48:34,276|INFO|logger: FINISH: Finished joining dataframes
+2018-10-20 18:48:34,276|INFO|logger: START: Starting to pandas..
+2018-10-20 18:59:39,405|INFO|logger: FINISH: hello pandas! (18047, 6)
