@@ -9,7 +9,7 @@ TEST_NAME = os.path.splitext(MODULE_NAME)[0]
 LOGGER = logger.get_logger(TEST_NAME)
 
 # Specify some constants
-URLPATH = "s3://dask-avro-data/application-data/app-100*.avro"
+URLPATH = "s3://dask-avro-data/application-data/app-*.avro"
 
 def filter_func(data):
     return data['payload']['originationCountryCode'] == 'CAN'

@@ -1,0 +1,6 @@
+2018-10-17 14:53:19,515|INFO|logger: START: Creating dask bag with filter
+2018-10-17 16:43:06,406|INFO|logger: FINISH: Dask bag created
+2018-10-17 16:43:06,407|INFO|logger: START: Creating dask dataframe
+2018-10-17 16:43:33,430|INFO|logger: FINISH: Dask dataframe created
+2018-10-17 16:43:33,431|INFO|logger: START: Starting count
+2018-10-17 18:11:30,211|INFO|logger: FINISH: Count is 3000826

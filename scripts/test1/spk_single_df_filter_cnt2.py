@@ -9,7 +9,7 @@ MODULE_NAME = os.path.basename(sys.modules['__main__'].__file__)
 TEST_NAME = os.path.splitext(MODULE_NAME)[0]
 LOGGER = logger.get_logger(TEST_NAME)
 
-URLPATH = "s3a://dask-avro-data/application-data/app-100*.avro"
+URLPATH = "s3a://dask-avro-data/application-data/app-*.avro"
 
 # Start
 LOGGER.info('START: Creating spark conf')

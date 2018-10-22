@@ -1,8 +1,11 @@
+import sys
+import os
 import dask.bag
 
 import logger
 
-TEST_NAME = 'dsk_single_df_filter_pd'
+MODULE_NAME = os.path.basename(sys.modules['__main__'].__file__)
+TEST_NAME = os.path.splitext(MODULE_NAME)[0]
 LOGGER = logger.get_logger(TEST_NAME)
 
 # Specify some constants
