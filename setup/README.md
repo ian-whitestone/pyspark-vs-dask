@@ -28,6 +28,7 @@ Follow instructions [here](https://www.terraform.io/intro/getting-started/build.
 
 ```bash
 terraform init
+terraform get -update
 terraform plan
 terraform apply
 ```
@@ -49,7 +50,7 @@ variable "security_groups"            { default = "sg-37b7ee48,sg-839e54f6" }
 variable "instance_type"              { default = "r5.xlarge" }
 variable "availability_zone"          { default = "us-east-1a" }
 variable "ebs_delete_on_termination"  { default = true }
-variable "root_block_device_vol_size" { default = 20 }
+variable "root_block_device_vol_size" { default = 50 }
 
 # bootstrap the ec2 instance
 variable "ec2_user"                   { default = "ubuntu" }
@@ -59,6 +60,8 @@ variable "ec2_user_data"              { default = "user_data.sh" }
 The R5 instances are described by AWS as being used for *fast performance for workloads that process large data sets in memory*. The `r5.xlarge` instance I chose has 4 vCPUs and 32 GB of RAM.
 
 For the instance's IAM role, I created new IAM role that has the default Amazon S3 full access policy attached. For security groups, I selected two default security groups that allow all inbound SSH traffic on port 22, and all inbound traffic on port 8888 (used for jupyter notebooks).
+
+I added a 50GB EBS volume (originally 20GB), as Dask spills data onto disk when it doesn't fit into memory.
 
 ### Installing Dask
 
@@ -193,13 +196,10 @@ Welcome to
 Using Python version 3.7.0 (default, Jun 28 2018 13:15:42)
 SparkSession available as 'spark'.
 
->>> pa = '/home/ubuntu/data/0.avro'
+>>> pa = 's3a://dask-avro-data/application-data/app-0.avro'
 >>> df = spark.read.format("com.databricks.spark.avro").load(pa)
 >>> df.count()
-200
-
->>> pa = 's3a://dask-avro-data/0.avro'
->>> df = spark.read.format("com.databricks.spark.avro").load(pa)
+501
 ```
 
 ### Datadog
