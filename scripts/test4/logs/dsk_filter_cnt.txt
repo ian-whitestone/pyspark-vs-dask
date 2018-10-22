@@ -1,0 +1,32 @@
+2018-10-22 02:42:28,539|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_36
+2018-10-22 02:42:28,539|INFO|logger: START: Creating dask bag with filter
+2018-10-22 02:43:36,012|INFO|logger: FINISH: Dask bag created
+2018-10-22 02:43:36,013|INFO|logger: START: Creating dask dataframe
+2018-10-22 02:43:36,741|INFO|logger: FINISH: Dask dataframe created
+2018-10-22 02:43:36,741|INFO|logger: START: Starting count
+2018-10-22 02:51:08,543|INFO|logger: FINISH: Count is 8187001
+2018-10-22 02:51:08,544|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_36
+2018-10-22 02:51:08,544|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_25
+2018-10-22 02:51:08,544|INFO|logger: START: Creating dask bag with filter
+2018-10-22 02:52:30,042|INFO|logger: FINISH: Dask bag created
+2018-10-22 02:52:30,042|INFO|logger: START: Creating dask dataframe
+2018-10-22 02:52:30,846|INFO|logger: FINISH: Dask dataframe created
+2018-10-22 02:52:30,846|INFO|logger: START: Starting count
+2018-10-22 03:00:05,235|INFO|logger: FINISH: Count is 8187001
+2018-10-22 03:00:05,235|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_25
+2018-10-22 03:00:05,235|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_15
+2018-10-22 03:00:05,236|INFO|logger: START: Creating dask bag with filter
+2018-10-22 03:01:20,624|INFO|logger: FINISH: Dask bag created
+2018-10-22 03:01:20,625|INFO|logger: START: Creating dask dataframe
+2018-10-22 03:01:21,561|INFO|logger: FINISH: Dask dataframe created
+2018-10-22 03:01:21,561|INFO|logger: START: Starting count
+2018-10-22 03:08:50,090|INFO|logger: FINISH: Count is 8187001
+2018-10-22 03:08:50,091|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_15
+2018-10-22 03:08:50,091|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_5
+2018-10-22 03:08:50,091|INFO|logger: START: Creating dask bag with filter
+2018-10-22 03:10:17,280|INFO|logger: FINISH: Dask bag created
+2018-10-22 03:10:17,280|INFO|logger: START: Creating dask dataframe
+2018-10-22 03:10:18,388|INFO|logger: FINISH: Dask dataframe created
+2018-10-22 03:10:18,389|INFO|logger: START: Starting count
+2018-10-22 03:17:16,135|INFO|logger: FINISH: Count is 8187001
+2018-10-22 03:17:16,135|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_5
