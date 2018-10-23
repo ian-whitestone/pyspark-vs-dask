@@ -17,7 +17,7 @@ URLPATH2 = "s3a://dask-avro-data/fulfillment-data/fulfillment-*.avro"
 LOGGER.info('START: Creating spark conf')
 Sconf = SparkConf().setMaster('local[4]'). \
     set('spark.driver.memory', '4g'). \
-    set('spark.driver.memory', '4g')
+    set('spark.executor.memory', '6g')
 
 sc = SparkContext(appName="my_test", conf=Sconf)
 sqlContext = SQLContext(sparkContext=sc)
