@@ -238,10 +238,18 @@ Not sure why timing went up...
 ```
 
 
+- 12 spark cores
+- 5 GB memory per worker
+- 4 GB memory for master
 
 **SPARK**
 ```bash
-
+1 (s) 0.03 (min): Creating spark conf
+627 (s) 10.46 (min): Creating spark dataframe 1
+628 (s) 10.47 (min): Creating spark dataframe 2
+0 (s) 0.00 (min): Joining dataframes
+7695 (s) 128.26 (min): Starting filtered count
+8953 (s) 149.22 (min): Total time for test: spk_multi_df_filter_cnt
 ```
 
 
