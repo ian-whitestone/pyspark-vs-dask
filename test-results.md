@@ -275,29 +275,146 @@ Not sure why timing went up...
 
 # Test Set 4 - Scaling on a Single Machine
 
-`dsk_filter_cnt` test with varying scheduler/num_workers
+`dsk_filter_cnt` test with varying num_workers
 
 **Dask**
 ```bash
-67 (s) 1.12 (min): Creating dask bag with filter
-0 (s) 0.01 (min): Creating dask dataframe
-451 (s) 7.53 (min): Starting count
-520 (s) 8.67 (min): Total time for test: dsk_filter_cnt_threading_36
-81 (s) 1.36 (min): Creating dask bag with filter
-0 (s) 0.01 (min): Creating dask dataframe
-454 (s) 7.57 (min): Starting count
-536 (s) 8.94 (min): Total time for test: dsk_filter_cnt_threading_25
-75 (s) 1.26 (min): Creating dask bag with filter
+54 (s) 0.90 (min): Creating dask bag with filter
 0 (s) 0.02 (min): Creating dask dataframe
-448 (s) 7.48 (min): Starting count
-524 (s) 8.75 (min): Total time for test: dsk_filter_cnt_threading_15
-87 (s) 1.45 (min): Creating dask bag with filter
+539 (s) 9.00 (min): Starting count
+594 (s) 9.92 (min): Total time for test: dsk_filter_cnt_threading_2
+56 (s) 0.94 (min): Creating dask bag with filter
 1 (s) 0.02 (min): Creating dask dataframe
-417 (s) 6.96 (min): Starting count
-506 (s) 8.43 (min): Total time for test: dsk_filter_cnt_threading_5
+361 (s) 6.02 (min): Starting count
+418 (s) 6.98 (min): Total time for test: dsk_filter_cnt_threading_3
+55 (s) 0.93 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+238 (s) 3.97 (min): Starting count
+294 (s) 4.91 (min): Total time for test: dsk_filter_cnt_threading_4
 ```
 
 **PySpark**
 ```bash
 
 ```
+
+`dsk_filter_cnt_c5_9xlarge`
+
+- run the same tests as above on a bigger EC2 instance with more cores..
+
+**Dask**
+
+```bash
+54 (s) 0.90 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+518 (s) 8.63 (min): Starting count
+572 (s) 9.55 (min): Total time for test: dsk_filter_cnt_threading_2
+52 (s) 0.88 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+337 (s) 5.62 (min): Starting count
+391 (s) 6.52 (min): Total time for test: dsk_filter_cnt_threading_3
+54 (s) 0.92 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+226 (s) 3.77 (min): Starting count
+281 (s) 4.70 (min): Total time for test: dsk_filter_cnt_threading_4
+53 (s) 0.89 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+181 (s) 3.03 (min): Starting count
+235 (s) 3.93 (min): Total time for test: dsk_filter_cnt_threading_6
+53 (s) 0.89 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+172 (s) 2.88 (min): Starting count
+227 (s) 3.79 (min): Total time for test: dsk_filter_cnt_threading_16
+53 (s) 0.90 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+182 (s) 3.04 (min): Starting count
+237 (s) 3.95 (min): Total time for test: dsk_filter_cnt_threading_26
+55 (s) 0.92 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+183 (s) 3.07 (min): Starting count
+239 (s) 4.00 (min): Total time for test: dsk_filter_cnt_threading_36
+```
+
+- you can see effect of adding more workers has diminishing returns
+
+
+
+`dsk_filter_cnt_compute_get`
+
+- compare threaded scheduler to synchronous scheduler
+
+**Dask**
+
+```bash
+53 (s) 0.90 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+528 (s) 8.81 (min): Starting count
+583 (s) 9.73 (min): Total time for test: dsk_filter_cnt_threaded_2
+54 (s) 0.91 (min): Creating dask bag with filter
+0 (s) 0.02 (min): Creating dask dataframe
+384 (s) 6.40 (min): Starting count
+439 (s) 7.33 (min): Total time for test: dsk_filter_cnt_threaded_3
+57 (s) 0.96 (min): Creating dask bag with filter
+1 (s) 0.02 (min): Creating dask dataframe
+304 (s) 5.07 (min): Starting count
+362 (s) 6.05 (min): Total time for test: dsk_filter_cnt_threaded_4
+58 (s) 0.97 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+1051 (s) 17.52 (min): Starting count
+1110 (s) 18.51 (min): Total time for test: dsk_filter_cnt_synchronous_1
+```
+
+
+
+`dsk_filter_pd`
+
+- filter a dataset, and convert it to a pandas dataframe
+- `sm` is a smaller dataset, `application-data/app-100*.avro`
+- `lg` is a larger dataset, `application-data/app-10*.avro`
+
+**Dask**
+
+```bash
+52 (s) 0.87 (min): Creating dask bag with filter
+0 (s) 0.00 (min): Creating dask dataframe
+52 (s) 0.87 (min): Starting to pandas
+104 (s) 1.74 (min): Total time for test: dsk_filter_pd_sm_threading_2
+54 (s) 0.91 (min): Creating dask bag with filter
+0 (s) 0.00 (min): Creating dask dataframe
+28 (s) 0.48 (min): Starting to pandas
+83 (s) 1.39 (min): Total time for test: dsk_filter_pd_sm_threading_4
+52 (s) 0.88 (min): Creating dask bag with filter
+0 (s) 0.00 (min): Creating dask dataframe
+19 (s) 0.33 (min): Starting to pandas
+72 (s) 1.21 (min): Total time for test: dsk_filter_pd_sm_threading_6
+49 (s) 0.83 (min): Creating dask bag with filter
+0 (s) 0.00 (min): Creating dask dataframe
+16 (s) 0.28 (min): Starting to pandas
+66 (s) 1.11 (min): Total time for test: dsk_filter_pd_sm_threading_20
+54 (s) 0.91 (min): Creating dask bag with filter
+0 (s) 0.00 (min): Creating dask dataframe
+16 (s) 0.28 (min): Starting to pandas
+71 (s) 1.18 (min): Total time for test: dsk_filter_pd_sm_threading_36
+54 (s) 0.91 (min): Creating dask bag with filter
+0 (s) 0.01 (min): Creating dask dataframe
+594 (s) 9.90 (min): Starting to pandas
+649 (s) 10.83 (min): Total time for test: dsk_filter_pd_lg_threading_2
+51 (s) 0.87 (min): Creating dask bag with filter
+1 (s) 0.02 (min): Creating dask dataframe
+282 (s) 4.70 (min): Starting to pandas
+335 (s) 5.59 (min): Total time for test: dsk_filter_pd_lg_threading_4
+52 (s) 0.87 (min): Creating dask bag with filter
+1 (s) 0.02 (min): Creating dask dataframe
+212 (s) 3.54 (min): Starting to pandas
+265 (s) 4.43 (min): Total time for test: dsk_filter_pd_lg_threading_6
+51 (s) 0.86 (min): Creating dask bag with filter
+1 (s) 0.02 (min): Creating dask dataframe
+177 (s) 2.96 (min): Starting to pandas
+230 (s) 3.85 (min): Total time for test: dsk_filter_pd_lg_threading_20
+64 (s) 1.07 (min): Creating dask bag with filter
+1 (s) 0.02 (min): Creating dask dataframe
+180 (s) 3.00 (min): Starting to pandas
+245 (s) 4.10 (min): Total time for test: dsk_filter_pd_lg_threading_36
+```
+
+- appears to peak at 20 threads
