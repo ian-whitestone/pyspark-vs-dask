@@ -121,7 +121,6 @@ def generate_records(id):
     time_fmt = '%Y-%m-%dT%H:%M:%S.%fZ'
     creationTimestamp = time.strftime(time_fmt, time.localtime(epoch))
     eventTimestamp = time.strftime(time_fmt, time.localtime(epoch))
-    country = random.choice(COUNTRIES, p=[0.02, 0.98])
 
     records = []
     for x in range(0, random.randint(500, 1000)):
@@ -136,7 +135,7 @@ def generate_records(id):
                     'state': 'NY',
                     'country': country
                 },
-                'originationCountryCode': country,
+                'originationCountryCode': random.choice(COUNTRIES, p=[0.02, 0.98]),
                 'phoneNumbers': [
                     {'type': 'home', 'value': '111-123-4321'},
                     {'type': 'mobile', 'value': '999-123-1234'},
