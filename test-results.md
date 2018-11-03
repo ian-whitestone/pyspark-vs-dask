@@ -206,17 +206,15 @@ Not sure why timing went up...
 ```
 
 
-### Join two dataframes, filter, and count
+## Join two dataframes, filter, and count
 
 
-#### On a r5.xlarge (4 cores, 32GB Ram)
+### On a r5.xlarge (4 cores, 32GB Ram)
 - 150,000,000 records/200,000 avro files * 2 datasets
 - Note, ran out of disk space for dask. bumped up to 50GB EBS volume
 
 **DASK**
-```bash
-
-```
+Didn't finish (ran for over a day).
 
 
 **SPARK**
@@ -230,19 +228,18 @@ Not sure why timing went up...
 27900 (s) 465.00 (min): Total time for test: spk_multi_df_filter_cnt
 ```
 
-#### On a c5.9xlarge (36 cores, 72 GB RAM)
+### On a c5.9xlarge (36 cores, 72 GB RAM)
 
 **DASK**
-```bash
+Didn't finish (ran for over a day).
 
-```
 
+**SPARK**
 
 - 12 spark cores
 - 5 GB memory per worker
 - 4 GB memory for master
 
-**SPARK**
 ```bash
 1 (s) 0.03 (min): Creating spark conf
 627 (s) 10.46 (min): Creating spark dataframe 1
@@ -252,12 +249,135 @@ Not sure why timing went up...
 8953 (s) 149.22 (min): Total time for test: spk_multi_df_filter_cnt
 ```
 
+## Join two dataframes, repartition, filter, and count
+The dask docs discuss [repartitioning & reindexing](http://docs.dask.org/en/latest/dataframe-performance.html) as ways to improve performance with distributed dataframes.
 
-#### With dask scheduler='processes' on the c5.9xlarge
+### dsk_multi_df_filter_pd.py
 
-**DASK**
+#### r5.xlarge
+
+You can see the speed up that re-indexing and repartitioning bring:
+
+rerun of original:
+
+`dsk_multi_df_filter_pd.py`
+
 ```bash
+54 (s) 0.92 (min): Creating dask bag 1
+0 (s) 0.00 (min): Creating dask dataframe 1
+55 (s) 0.92 (min): Creating dask bag 2
+0 (s) 0.00 (min): Creating dask dataframe 2
+0 (s) 0.00 (min): Joining dataframes
+721 (s) 12.03 (min): Starting to pandas..
+832 (s) 13.87 (min): Total time for test: dsk_multi_df_filter_pd
+```
 
+with repartition:
+
+`dsk_multi_df_filter_pd_repart.py`
+
+```bash
+55 (s) 0.92 (min): Creating dask bag 1
+0 (s) 0.00 (min): Creating dask dataframe 1
+0 (s) 0.00 (min): Repartitioning df1 with 10 parts
+55 (s) 0.92 (min): Creating dask bag 2
+0 (s) 0.00 (min): Creating dask dataframe 2
+0 (s) 0.00 (min): Repartitioning df2 with 10 parts
+0 (s) 0.00 (min): Joining dataframes
+53 (s) 0.89 (min): Starting to pandas..
+163 (s) 2.73 (min): Total time for test: dsk_multi_df_filter_pd_repart
+```
+
+with reindex:
+
+`dsk_multi_df_filter_pd_reindex.py`
+
+```bash
+54 (s) 0.90 (min): Creating dask bag 1
+0 (s) 0.00 (min): Creating dask dataframe 1
+32 (s) 0.55 (min): Setting index on df1
+56 (s) 0.94 (min): Creating dask bag 2
+0 (s) 0.00 (min): Creating dask dataframe 2
+20 (s) 0.33 (min): Setting index on df2
+0 (s) 0.00 (min): Joining dataframes
+62 (s) 1.04 (min): Starting to pandas..
+226 (s) 3.77 (min): Total time for test: dsk_multi_df_filter_pd_reindex
+```
+
+### `dsk_multi_df_filter_cnt.py`
+
+Recall, the original didn't finish...
+
+##### r5.xlarge
+**Note**: the partition splits below document the number of partitions used for df1 (which gets filtered), and df2, respectively.
+
+with 10/100 partitions and 4 workers
+
+```bash
+64 (s) 1.08 (min): Creating dask bag 1
+25 (s) 0.43 (min): Creating dask dataframe 1
+0 (s) 0.00 (min): Repartitioning df1 with 10 parts
+64 (s) 1.07 (min): Creating dask bag 2
+20 (s) 0.35 (min): Creating dask dataframe 2
+0 (s) 0.00 (min): Repartitioning df2 with 100 parts
+1 (s) 0.03 (min): Joining dataframes
+10905 (s) 181.75 (min): Starting count
+11083 (s) 184.72 (min): Total time for test: dsk_multi_df_filter_cnt_repart
+```
+
+##### c5.9xlarge
+
+with 10/10 partitions and 10 workers:
+
+```bash
+56 (s) 0.94 (min): Creating dask bag 1
+23 (s) 0.40 (min): Creating dask dataframe 1
+0 (s) 0.00 (min): Repartitioning df1 with 10 parts
+60 (s) 1.00 (min): Creating dask bag 2
+19 (s) 0.32 (min): Creating dask dataframe 2
+0 (s) 0.00 (min): Repartitioning df2 with 10 parts
+1 (s) 0.03 (min): Joining dataframes
+7650 (s) 127.52 (min): Starting count
+7812 (s) 130.21 (min): Total time for test: dsk_multi_df_filter_cnt_repart
+```
+
+with 20/20 partitions and 20 workers:
+
+```bash
+59 (s) 0.98 (min): Creating dask bag 1
+23 (s) 0.39 (min): Creating dask dataframe 1
+0 (s) 0.00 (min): Repartitioning df1 with 20 parts
+62 (s) 1.04 (min): Creating dask bag 2
+19 (s) 0.32 (min): Creating dask dataframe 2
+0 (s) 0.00 (min): Repartitioning df2 with 20 parts
+1 (s) 0.03 (min): Joining dataframes
+7875 (s) 131.26 (min): Starting count
+8042 (s) 134.04 (min): Total time for test: dsk_multi_df_filter_cnt_repart_c59xlarge
+```
+
+
+
+### `spk_multi_df_filter_cnt.py`
+
+#### c5.9xlarge
+
+with 12/12 partitions, and 12 cores (workers)
+
+```python
+Sconf = SparkConf().setMaster('local[12]'). \
+    set('spark.driver.memory', '4g'). \
+    set('spark.executor.memory', '5g')
+```
+
+```bash
+2 (s) 0.04 (min): Creating spark conf
+651 (s) 10.86 (min): Creating spark dataframe 1
+0 (s) 0.00 (min): Repartitioning df1
+679 (s) 11.32 (min): Creating spark dataframe 2
+0 (s) 0.00 (min): Repartitioning df2
+0 (s) 0.00 (min): Joining dataframes
+8287 (s) 138.12 (min): Starting filtered count
+9620 (s) 160.35 (min): Total time for test: spk_multi_df_filter_cnt_repart_c59xlarge
 ```
 
 

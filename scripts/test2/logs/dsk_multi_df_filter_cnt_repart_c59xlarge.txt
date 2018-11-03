@@ -1,0 +1,16 @@
+2018-10-23 23:44:06,365|INFO|logger: START: Creating dask bag 1
+2018-10-23 23:45:02,687|INFO|logger: FINISH: Dask bag1 created
+2018-10-23 23:45:02,688|INFO|logger: START: Creating dask dataframe 1
+2018-10-23 23:45:26,660|INFO|logger: FINISH: Dask dataframe 1 created
+2018-10-23 23:45:26,660|INFO|logger: START: Repartitioning df1 with 10 parts
+2018-10-23 23:45:26,777|INFO|logger: START: Repartitioning df1 with 10 parts
+2018-10-23 23:45:26,777|INFO|logger: START: Creating dask bag 2
+2018-10-23 23:46:26,793|INFO|logger: FINISH: Dask bag2 created
+2018-10-23 23:46:26,793|INFO|logger: START: Creating dask dataframe 2
+2018-10-23 23:46:46,183|INFO|logger: FINISH: Dask dataframe 2 created
+2018-10-23 23:46:46,183|INFO|logger: START: Repartitioning df2 with 10 parts
+2018-10-23 23:46:46,291|INFO|logger: START: Repartitioning df2 with 10 parts
+2018-10-23 23:46:46,291|INFO|logger: START: Joining dataframes
+2018-10-23 23:46:47,856|INFO|logger: FINISH: Finished joining dataframes
+2018-10-23 23:46:47,856|INFO|logger: START: Starting count
+2018-10-24 01:54:18,788|INFO|logger: FINISH: Count is 2670654
