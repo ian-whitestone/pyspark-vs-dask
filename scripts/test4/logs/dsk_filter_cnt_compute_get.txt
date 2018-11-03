@@ -1,0 +1,37 @@
+2018-10-23 15:52:56,002|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threaded_2
+2018-10-23 15:52:56,002|INFO|logger: START: Creating dask bag with filter
+2018-10-23 15:53:49,978|INFO|logger: FINISH: Dask bag created
+2018-10-23 15:53:49,978|INFO|logger: START: Creating dask dataframe
+2018-10-23 15:53:50,831|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 15:53:50,831|INFO|logger: START: Starting count
+/home/ubuntu/miniconda3/envs/dask/lib/python3.6/site-packages/dask/base.py:829: UserWarning: The get= keyword has been deprecated. Please use the scheduler= keyword instead with the name of the desired scheduler like 'threads' or 'processes'
+    x.compute(scheduler='threads')
+or with a function that takes the graph and keys
+    x.compute(scheduler=my_scheduler_function)
+  "The get= keyword has been deprecated. "
+2018-10-23 16:02:39,700|INFO|logger: FINISH: Count is 8150985
+2018-10-23 16:02:39,700|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threaded_2
+2018-10-23 16:02:39,700|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threaded_3
+2018-10-23 16:02:39,700|INFO|logger: START: Creating dask bag with filter
+2018-10-23 16:03:34,375|INFO|logger: FINISH: Dask bag created
+2018-10-23 16:03:34,375|INFO|logger: START: Creating dask dataframe
+2018-10-23 16:03:35,367|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 16:03:35,368|INFO|logger: START: Starting count
+2018-10-23 16:09:59,587|INFO|logger: FINISH: Count is 8150985
+2018-10-23 16:09:59,588|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threaded_3
+2018-10-23 16:09:59,588|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threaded_4
+2018-10-23 16:09:59,588|INFO|logger: START: Creating dask bag with filter
+2018-10-23 16:10:57,166|INFO|logger: FINISH: Dask bag created
+2018-10-23 16:10:57,166|INFO|logger: START: Creating dask dataframe
+2018-10-23 16:10:58,174|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 16:10:58,174|INFO|logger: START: Starting count
+2018-10-23 16:16:02,294|INFO|logger: FINISH: Count is 8150985
+2018-10-23 16:16:02,295|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threaded_4
+2018-10-23 16:16:02,295|INFO|logger: BEGIN: Running test: dsk_filter_cnt_synchronous_1
+2018-10-23 16:16:02,295|INFO|logger: START: Creating dask bag with filter
+2018-10-23 16:17:00,358|INFO|logger: FINISH: Dask bag created
+2018-10-23 16:17:00,358|INFO|logger: START: Creating dask dataframe
+2018-10-23 16:17:01,244|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 16:17:01,244|INFO|logger: START: Starting count
+2018-10-23 16:34:32,606|INFO|logger: FINISH: Count is 8150985
+2018-10-23 16:34:32,607|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_synchronous_1

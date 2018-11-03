@@ -12,11 +12,11 @@ def parse_line(line):
 
 def parse_log(filename):
     lines = []
-    
+
     with open(filename, 'r') as f_in:
         content = f_in.read()
         tests = content.split(' BEGIN: Running test:')
-        tests = [test for test in tests if ' dsk_filter_cnt_' in test]
+        tests = [test for test in tests if ' dsk_filter_' in test]
 
         for test in tests:
             process_test(test)
@@ -36,7 +36,7 @@ def process_test(test):
         print ('%d (s) %0.2f (min): %s' % (secs, secs/60, lines[i]['text']))
 
     total_secs = (lines[-1]['ts'] - lines[0]['ts']).total_seconds()
-    print ('%d (s) %0.2f (min): Total time for test: %s' 
+    print ('%d (s) %0.2f (min): Total time for test: %s'
            % (total_secs, total_secs/60, test_name))
 
 

@@ -1,0 +1,56 @@
+2018-10-23 18:06:20,061|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_2
+2018-10-23 18:06:20,061|INFO|logger: START: Creating dask bag with filter
+2018-10-23 18:07:14,244|INFO|logger: FINISH: Dask bag created
+2018-10-23 18:07:14,244|INFO|logger: START: Creating dask dataframe
+2018-10-23 18:07:14,951|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 18:07:14,951|INFO|logger: START: Starting count
+2018-10-23 18:15:52,974|INFO|logger: FINISH: Count is 8150985
+2018-10-23 18:15:52,974|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_2
+2018-10-23 18:15:52,974|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_3
+2018-10-23 18:15:52,974|INFO|logger: START: Creating dask bag with filter
+2018-10-23 18:16:45,869|INFO|logger: FINISH: Dask bag created
+2018-10-23 18:16:45,869|INFO|logger: START: Creating dask dataframe
+2018-10-23 18:16:46,620|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 18:16:46,620|INFO|logger: START: Starting count
+2018-10-23 18:22:24,067|INFO|logger: FINISH: Count is 8150985
+2018-10-23 18:22:24,067|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_3
+2018-10-23 18:22:24,067|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_4
+2018-10-23 18:22:24,067|INFO|logger: START: Creating dask bag with filter
+2018-10-23 18:23:19,026|INFO|logger: FINISH: Dask bag created
+2018-10-23 18:23:19,026|INFO|logger: START: Creating dask dataframe
+2018-10-23 18:23:19,773|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 18:23:19,773|INFO|logger: START: Starting count
+2018-10-23 18:27:05,773|INFO|logger: FINISH: Count is 8150985
+2018-10-23 18:27:05,773|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_4
+2018-10-23 18:27:05,773|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_6
+2018-10-23 18:27:05,773|INFO|logger: START: Creating dask bag with filter
+2018-10-23 18:27:59,002|INFO|logger: FINISH: Dask bag created
+2018-10-23 18:27:59,002|INFO|logger: START: Creating dask dataframe
+2018-10-23 18:27:59,860|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 18:27:59,860|INFO|logger: START: Starting count
+2018-10-23 18:31:01,771|INFO|logger: FINISH: Count is 8150985
+2018-10-23 18:31:01,771|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_6
+2018-10-23 18:31:01,771|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_16
+2018-10-23 18:31:01,771|INFO|logger: START: Creating dask bag with filter
+2018-10-23 18:31:55,360|INFO|logger: FINISH: Dask bag created
+2018-10-23 18:31:55,360|INFO|logger: START: Creating dask dataframe
+2018-10-23 18:31:56,115|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 18:31:56,115|INFO|logger: START: Starting count
+2018-10-23 18:34:49,046|INFO|logger: FINISH: Count is 8150985
+2018-10-23 18:34:49,047|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_16
+2018-10-23 18:34:49,047|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_26
+2018-10-23 18:34:49,047|INFO|logger: START: Creating dask bag with filter
+2018-10-23 18:35:42,848|INFO|logger: FINISH: Dask bag created
+2018-10-23 18:35:42,848|INFO|logger: START: Creating dask dataframe
+2018-10-23 18:35:43,699|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 18:35:43,699|INFO|logger: START: Starting count
+2018-10-23 18:38:46,234|INFO|logger: FINISH: Count is 8150985
+2018-10-23 18:38:46,234|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_26
+2018-10-23 18:38:46,234|INFO|logger: BEGIN: Running test: dsk_filter_cnt_threading_36
+2018-10-23 18:38:46,234|INFO|logger: START: Creating dask bag with filter
+2018-10-23 18:39:41,320|INFO|logger: FINISH: Dask bag created
+2018-10-23 18:39:41,320|INFO|logger: START: Creating dask dataframe
+2018-10-23 18:39:42,194|INFO|logger: FINISH: Dask dataframe created
+2018-10-23 18:39:42,194|INFO|logger: START: Starting count
+2018-10-23 18:42:46,110|INFO|logger: FINISH: Count is 8150985
+2018-10-23 18:42:46,111|INFO|logger: COMPLETE: Running test: dsk_filter_cnt_threading_36

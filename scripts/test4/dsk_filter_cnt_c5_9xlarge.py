@@ -24,7 +24,7 @@ def filter_func(data):
     return data['payload']['originationCountryCode'] == 'USA'
 
 
-for num_workers in [2, 3, 4]:
+for num_workers in [2, 3, 4, 6, 16, 26, 36]:
     test_name = "dsk_filter_cnt_{}_{}".format('threading', num_workers)
     LOGGER.info('BEGIN: Running test: {}'.format(test_name))
 
@@ -48,3 +48,4 @@ for num_workers in [2, 3, 4]:
     LOGGER.info('FINISH: Count is %s', cnt)
 
     LOGGER.info('COMPLETE: Running test: {}'.format(test_name))
+
